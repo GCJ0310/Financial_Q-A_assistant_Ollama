@@ -31,7 +31,7 @@ This tool is built with **Streamlit** for the interface and **LangChain** + **Ol
 
 ```
 
-Financial-QA-Assistant/
+Financial_Q-A_Assistant_Ollama/
 │
 ├─ app.py              \# The main Streamlit interface and chat logic
 ├─ qa.py        \# Manages the question-answering process with Ollama
