@@ -29,7 +29,7 @@ Built with **Streamlit** for the interface and **LangChain + Ollama** for local 
 
 ## File Structure
 
-Financial-QA-Assistant/
+- Financial-QA-Assistant/
 │
 ├─ app.py # Streamlit interface with chat sidebar
 ├─ qa_system.py # Handles question-answering using Ollama
@@ -37,11 +37,6 @@ Financial-QA-Assistant/
 ├─ utils.py # Helper functions like chunk_text
 ├─ requirements.txt # Python dependencies
 └─ README.md
-
-yaml
-Copy code
-
----
 
 ## Setup Instructions
 
@@ -107,5 +102,6 @@ Future Improvements
 Support more financial document layouts and templates
 
 Add summarization for very large reports
+
 
 Improve error handling for unsupported file types or corrupted documents
