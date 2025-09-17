@@ -34,8 +34,8 @@ This tool is built with **Streamlit** for the interface and **LangChain** + **Ol
 Financial-QA-Assistant/
 │
 ├─ app.py              \# The main Streamlit interface and chat logic
-├─ qa\_system.py        \# Manages the question-answering process with Ollama
-├─ doc\_processing.py   \# Functions for reading and cleaning PDF and Excel files
+├─ qa.py        \# Manages the question-answering process with Ollama
+├─ doc_processing.py   \# Functions for reading and cleaning PDF and Excel files
 ├─ utils.py            \# Helper functions (e.g., text chunking)
 ├─ requirements.txt    \# Lists all necessary Python dependencies
 └─ README.md           \# This file
@@ -96,7 +96,7 @@ You'll need to have Ollama installed and running. For a quick start, pull the re
 ollama pull phi:latest
 ```
 
-> **Note:** The current setup uses LLaMA2, which can be slower, especially with larger documents. For better performance, configure `qa_system.py` to use `phi:latest`.
+> **Note:** The current setup uses LLaMA2, which can be slower, especially with larger documents. For better performance, configure `qa.py` to use `phi:latest`.
 
 ### 6\. Run the app
 
