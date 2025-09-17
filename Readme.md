@@ -1,6 +1,3 @@
-Here's the complete, formatted README file you can copy and paste directly.
-
-```markdown
 # 💰 Financial Document Q&A Assistant
 
 A **web-based assistant** that processes financial PDF or Excel documents and answers user questions using **natural language**.
@@ -138,8 +135,3 @@ streamlit run app.py
   - **Template Support:** Add support for more diverse financial document layouts and templates.
   - **Summarization:** Implement a feature to generate concise summaries of large financial reports.
   - **Error Handling:** Improve robustness for unsupported file types or corrupted documents.
-
-<!-- end list -->
-
-```
-```
