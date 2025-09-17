@@ -52,7 +52,7 @@ Follow these steps to get the application running on your local machine.
 
 ```bash
 git clone <your-repo-link>
-cd Financial-Q-A-assistant_Ollama
+cd Financial_Q-A_assistant_Ollama
 ````
 
 ### 2\. Create a virtual environment
