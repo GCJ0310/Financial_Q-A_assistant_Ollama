@@ -17,6 +17,9 @@ This project runs entirely on your machine using **Streamlit** for the interface
   - 💬 **Explanations:** Simple, friendly style.
 - **Conversation History:** Sidebar remembers your previous questions.
 - **Document Preview:** See the extracted text from your uploaded file.
+- 👍👎 **Feedback System:** Rate answers. A 👎 will automatically re-generate a clearer and more detailed response.
+
+- **Junk Prompt Guard:** If you enter a random or irrelevant query, the assistant politely asks you to stick to financial questions.
 
 ---
 
@@ -28,6 +31,7 @@ The system prompt is designed so responses:
 - ✅ Break complex answers into **clear bullet points or steps**  
 - ✅ End with a **short summary / key takeaway**  
 - ✅ Adjust tone automatically (formal for financial numbers, casual for explanations)
+- ✅ If the user dislikes a response (👎), the assistant retries with simpler language and more detail.
 
 **Example:**  
 - *User asks:* “What is the net profit margin?”  
@@ -142,6 +146,7 @@ Financial_Q-A_Assistant_Ollama/
 - ⚡ **Performance:** LLaMA2 works well but can be slower. For faster local inference, use phi:latest.
 - 📄 **Large files:** The app splits text into chunks for smooth processing.
 - 🔒 **Privacy:** Runs 100% locally — your data never leaves your machine.
+- 🔄 Feedback Learning: Future versions may adapt based on feedback history (analyzing 👎 patterns to improve prompts).
 
 **Planned improvements:**
 - Auto-summary of large reports
