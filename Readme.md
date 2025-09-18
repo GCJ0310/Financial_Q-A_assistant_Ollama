@@ -1,137 +1,153 @@
 # 💰 Financial Document Q&A Assistant
 
-A **web-based assistant** that processes financial PDF or Excel documents and answers user questions using **natural language**.
+A **local web-based assistant** to process your financial PDF or Excel documents and answer your questions in **plain English**.
 
-This tool is built with **Streamlit** for the interface and **LangChain** + **Ollama** for local Small Language Model (SLM) integration, ensuring your financial data stays private and secure on your machine.
+This project runs entirely on your machine using **Streamlit** for the interface and **Ollama** for local Small Language Model (SLM) inference.  
+➡️ Your financial data stays **private** — it never leaves your computer.
 
 ---
 
 ## ✨ Features
 
-- **Document Processing:** Upload financial documents in PDF or Excel format (e.g., Income Statement, Balance Sheet, Cash Flow Statement).
-- **Data Extraction:** Automatically extracts both text and numerical data from your documents.
-- **Natural Language Q&A:** Ask questions about key financial metrics like revenue, expenses, profits, and more using plain English.
-- **Conversational Memory:** Supports follow-up questions by remembering the context of your previous queries.
-- **Intuitive UI:** An interactive chat interface with a **conversation history in the sidebar** and a clean, user-friendly design.
-- **Document Preview:** Easily preview the content extracted from your uploaded documents.
+- **Document Upload:** Add financial PDFs or Excel files (Balance Sheet, Income Statement, Cash Flow Report, etc.).
+- **Smart Q&A:** Ask questions like *“What was the revenue last year?”* and get clear, step-by-step answers.
+- **Friendly Conversation:** The assistant greets you, explains concepts in **beginner-friendly language**, and avoids jargon.
+- **Adaptive Tone:**  
+  - 📊 **Numbers & Metrics:** Formal, structured answers.  
+  - 💬 **Explanations:** Simple, friendly style.
+- **Conversation History:** Sidebar remembers your previous questions.
+- **Document Preview:** See the extracted text from your uploaded file.
 
 ---
 
-## 💻 Technical Details
+## 🧠 Prompt Improvements
 
-- **Frontend:** Streamlit
-- **Backend:** Python, LangChain, Ollama SLM
-- **Document Processing:** Uses `pdfplumber` for PDFs and `pandas` + `openpyxl` for Excel files.
-- **Conversation Memory:** A built-in system tracks previous questions and answers to maintain context.
-- **Model Used:** The current default model is **LLaMA2**, but for significantly faster responses, **phi:latest** is highly recommended.
+The system prompt is designed so responses:  
+- ✅ Greet the user before answering  
+- ✅ Use **simple, beginner-friendly language**  
+- ✅ Break complex answers into **clear bullet points or steps**  
+- ✅ End with a **short summary / key takeaway**  
+- ✅ Adjust tone automatically (formal for financial numbers, casual for explanations)
+
+**Example:**  
+- *User asks:* “What is the net profit margin?”  
+  - Assistant gives a **formal calculation breakdown**  
+- *User asks:* “What does gross margin mean?”  
+  - Assistant explains in **everyday language** with an example
+
+---
+
+## 💻 Tech Stack
+
+- **Frontend:** Streamlit  
+- **Backend:** Python + LangChain + Ollama  
+- **Document Reading:** `pdfplumber` (PDFs), `pandas` + `openpyxl` (Excel)  
+- **Model:** Default is **llama2**; `phi:latest` is recommended for faster answers
 
 ---
 
 ## 📂 File Structure
 
 ```
-
 Financial_Q-A_Assistant_Ollama/
 │
-├─ app.py              \# The main Streamlit interface and chat logic
-├─ qa.py        \# Manages the question-answering process with Ollama
-├─ doc_processing.py   \# Functions for reading and cleaning PDF and Excel files
-├─ utils.py            \# Helper functions (e.g., text chunking)
-├─ requirements.txt    \# Lists all necessary Python dependencies
-└─ README.md           \# This file
-
-````
+├── app.py             # Main Streamlit interface
+├── qa.py       # Q&A logic with Ollama + prompt improvements
+├── doc_processing.py  # Reads and cleans PDF/Excel
+├── utils.py           # Helper functions (e.g., text chunking)
+├── requirements.txt   # Python dependencies
+└── README.md          # This file
+```
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Setup (Local Only)
 
-Follow these steps to get the application running on your local machine.
+1. **Clone the project**  
+   ```bash
+   git clone <your-repo-link>
+   cd Financial_Q-A_Assistant_Ollama
+   ```
 
-### 1. Clone the repository
+2. **Create and activate virtual environment**
 
-```bash
-git clone <your-repo-link>
-cd Financial_Q-A_assistant_Ollama
-````
+   - Windows PowerShell:
+     ```bash
+     python -m venv venv
+     .\venv\Scripts\Activate.ps1
+     ```
+   - Windows CMD:
+     ```bash
+     python -m venv venv
+     .\venv\Scripts\activate.bat
+     ```
+   - Mac/Linux:
+     ```bash
+     python -m venv venv
+     source venv/bin/activate
+     ```
 
-### 2\. Create a virtual environment
+3. **Upgrade pip**
+   ```bash
+   python -m pip install --upgrade pip
+   ```
 
-```bash
-python -m venv venv
-```
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Activate the environment:
+5. **Install Ollama**  
+   Download and install Ollama from [ollama.ai/download](https://ollama.ai/download)
 
-  - **On Windows (PowerShell):**
-    ```bash
-    .\venv\Scripts\Activate.ps1
-    ```
-  - **On Windows (CMD):**
-    ```bash
-    .\venv\Scripts\activate.bat
-    ```
-  - **On macOS/Linux:**
-    ```bash
-    source venv/bin/activate
-    ```
+6. **Pull a model**  
+   By default, the app uses llama2:
+   ```bash
+   ollama pull llama2
+   ```
+   ⚡ For faster inference, you can also pull phi:latest:
+   ```bash
+   ollama pull phi:latest
+   ```
+   > You can switch the model in `qa.py`.
 
-### 3\. Upgrade pip
+7. **Run the app**
+   ```bash
+   streamlit run app.py
+   ```
 
-```bash
-python -m pip install --upgrade pip
-```
+---
 
-### 4\. Install dependencies
+## 🚀 How to Use
 
-```bash
-pip install -r requirements.txt
-```
+- Upload a file → PDF or Excel
+- Ask questions → e.g., “What is total revenue?”, “Explain gross margin”
+- View history → Conversation appears in the sidebar
+- Check document preview → Expand to see extracted content
 
-### 5\. Pull a local Ollama model
-
-You'll need to have Ollama installed and running. For a quick start, pull the recommended `phi:latest` model, which offers faster inference.
-
-```bash
-ollama pull phi:latest
-```
-
-> **Note:** The current setup uses LLaMA2, which can be slower, especially with larger documents. For better performance, configure `qa.py` to use `phi:latest`.
-
-### 6\. Run the app
-
-```bash
-streamlit run app.py
-```
-
------
-
-## 🚀 Usage
-
-1.  **Upload:** In the main interface, use the file uploader to select a PDF or Excel financial document.
-2.  **Ask:** Type your questions about the document's content (e.g., "What was the total revenue?", "Can you list the operating expenses?").
-3.  **Explore:** Your conversation history will be displayed in the sidebar. You can also expand the "Document Preview" section to see the extracted text.
-
------
+---
 
 ## 📝 Dependencies
 
-  - Python ≥3.10
-  - `Streamlit`
-  - `LangChain` & `langchain-community`
-  - `Ollama` Python client
-  - `pdfplumber`, `pandas`, `openpyxl`
+- Python ≥ 3.10
+- streamlit
+- langchain, langchain-community
+- ollama client
+- pdfplumber, pandas, openpyxl
 
------
+---
 
-## 📌 Notes & Future Improvements
+## 📌 Notes & Future Plans
 
-  - **Performance:** LLaMA2 can be resource-intensive. For faster local inference, it's highly recommended to use `phi:latest`.
-  - **Document Size:** The app uses text chunking to handle large documents, but processing time may increase with very large files.
-  - **Local Hosting:** The entire application runs locally on your machine, ensuring your data remains private and is never sent to the cloud.
+- ⚡ **Performance:** LLaMA2 works well but can be slower. For faster local inference, use phi:latest.
+- 📄 **Large files:** The app splits text into chunks for smooth processing.
+- 🔒 **Privacy:** Runs 100% locally — your data never leaves your machine.
 
-### 💡 Future Plans:
+**Planned improvements:**
+- Auto-summary of large reports
+- Support for more financial document templates
+- Stronger error handling for bad file formats
 
-  - **Template Support:** Add support for more diverse financial document layouts and templates.
-  - **Summarization:** Implement a feature to generate concise summaries of large financial reports.
-  - **Error Handling:** Improve robustness for unsupported file types or corrupted documents.
+---
+
+**Feel free to open issues or contribute!**
